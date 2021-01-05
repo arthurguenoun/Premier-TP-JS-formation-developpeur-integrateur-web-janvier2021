@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculatrice</title>
+    <style>
+   #lien{
+   width: 25%;
+   margin: 0 auto;}
+   
+	  #parent {
+	   height: 100px;
+	   padding: 50px;
+	   background-color: darkblue;
+	   margin : 0 auto;}
+	form {
+	width: 30%;
+	margin: 0 auto}
+	
+	 #nb1, #nb2  {
+	 background-color:yellow;
+	 width: 36%;
+	 margin: 0 auto;
+	 text-align: center;
+	visibility: hidden;
+	 }
+    </style>
+</head>
+<body>
+<div id="lien">
+<a id="apparition" href="">Faire apparaître la calculatrice</a> / <a id="disparition" href="">Faire disparaitre la calculatrice</a>
+</div>
+<div id="parent">
+	<form id="Calculatrice">
+		<input type="text" id="premierNombre" name="premierNombre">
+		<select id="signe" name="signe">
+			 <option value="+">+</option>
+			 <option value="-">-</option>
+			 <option value="*">*</option>
+			 <option value="/">/</option>
+		 </select>
+	    <input type="text" id="secondNombre" name="secondNombre">
+        <input type="submit" id="envoyer" name="envoyer" value='OK'>
+		
+    </form>
+<div id="nb1">
+<p>Message</p>
+</div>
+
+
+</div>
+
+	<script>
+	var lienUn = document.getElementById('apparition');
+	lienUn.addEventListener('click',fLienUn);
+	
+	var lienDeux= document.getElementById('disparition');
+	lienDeux.addEventListener('click',fLienDeux);
+	
+	function fLienUn(){
+	  event.preventDefault();
+		document.getElementById('Calculatrice').style.visibility ='visible';}
+	
+	function fLienDeux (){
+	  event.preventDefault();
+		document.getElementById('Calculatrice').style.visibility='hidden';
+	}
+	
+	var nombre = document.getElementById('premierNombre');
+	nombre.addEventListener('mouseover',fNombre1);
+	nombre.addEventListener('mouseout',fNombre2);
+	
+	var nombreDeux = document.getElementById('secondNombre');
+	nombreDeux.addEventListener('mouseover',fNombre3);
+	nombreDeux.addEventListener('mouseout',fNombre4);
+
+	var choixSigne = document.getElementById('signe');
+	choixSigne.addEventListener('mouseover',fSigne1);
+	choixSigne.addEventListener('mouseout',fSigne2);
+	
+	function fNombre1(){
+		if (premier.value == ''){
+		document.getElementById('nb1').innerHTML="Veuillez saisir un chiffre svp";
+		document.getElementById('nb1').style.visibility='visible';
+		} else {
+		document.getElementById('nb1').style.visibility='hidden';	}
+		
+	}
+	function fNombre2(){
+		document.getElementById('nb1').style.visibility='hidden';
+	}
+	
+	function fNombre3(){
+		if (second.value == ''){
+		document.getElementById('nb1').innerHTML="Veuillez saisir un chiffre svp";
+		document.getElementById('nb1').style.visibility='visible';
+		} else {
+		document.getElementById('nb1').style.visibility='hidden';	}
+		
+	}
+	function fNombre4 (){
+		document.getElementById('nb1').style.visibility='hidden';
+	}
+	function fSigne1 () {
+			document.getElementById('nb1').innerHTML="Veuillez selectionner un opérateur svp";
+			document.getElementById('nb1').style.visibility='visible';
+	}
+	function fSigne2(){
+		document.getElementById('nb1').style.visibility='hidden';
+	}
+	
+	
+	var premier = document.getElementById('premierNombre');
+	var second = document.getElementById('secondNombre');
+	var signe = document.getElementById('signe');
+	var envoyer = document.getElementById('Calculatrice');
+	   envoyer.addEventListener("submit", calcul);
+
+	function calcul(){
+	   event.preventDefault();
+	   let resultat=0 ;
+	   if(signe.value =='+'){
+	   resultat = parseFloat(premier.value) + parseFloat(second.value); } else if (signe.value== '-'){
+	    resultat = parseFloat(premier.value) - parseFloat(second.value);} else if (signe.value== '*'){
+	    resultat = parseFloat(premier.value) * parseFloat(second.value);} else if (signe.value== '/'){
+	    resultat= parseFloat(premier.value) / parseFloat(second.value);}
+		console.log(resultat);
+		
+	if (!isNaN(resultat)){
+	   alert(premier.value +' ' + signe.value +' '+ second.value + ' = ' + resultat);
+	   console.log(resultat);
+	 } else {
+	 alert('veuillez entrer des valeurs correctes svp')}
+	 }
+	 
+	 
+	 
+	</script>
+</body>
+</html>
